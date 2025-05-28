@@ -1,0 +1,3 @@
+Engenharia Informatica:INF001
+Matematica Discreta:MAT002
+Fisica I5:FIS001

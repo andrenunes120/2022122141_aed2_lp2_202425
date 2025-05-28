@@ -1,0 +1,2 @@
+3,FCHS-301,Sexta-feira 10-12,INF001:Programacao Avancada;MAT003:Calculo Diferencial
+4,FCHS-302,Sexta-feira 09-11,FIS002:Fisica Quantica
