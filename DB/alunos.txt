@@ -1,0 +1,4 @@
+2022001;André Nunes;AED2,LP2,RC
+2022002;Joana Ribeiro;RC,LP2
+2022003;Carlos Silva;RC
+2022004;Luan Moreno;RC

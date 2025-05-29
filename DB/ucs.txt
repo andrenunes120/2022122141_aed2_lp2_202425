@@ -1,0 +1,6 @@
+AED1;Algoritmos e Estruturas de Dados I;LEI;TUESDAY,09:00,11:00;
+AED2;Algoritmos e Estruturas de Dados II;LEI;THURSDAY,11:00,13:00,P1002;
+ES;Engenharia de Software;MEI;MONDAY,11:00,13:00;
+LP1;Linguagens de Programação I;LEI;MONDAY,09:00,11:00|THURSDAY,14:00,16:00;
+LP2;Linguagens de Programação II;LEI;MONDAY,09:00,11:00|WEDNESDAY,14:00,16:00;P1001;
+RC;Redes de Computadores;LEI;FRIDAY,09:00,11:00;
