@@ -1,5 +1,5 @@
 
-# Projeto LP2/AED2 – Gestão e Navegação Indoor
+# 📚 Gestão Académica & Navegação Indoor — LP2/AED2 UFP 2024/25
 
 Projeto académico para a gestão de dados académicos e navegação indoor em Java, recorrendo a estruturas de dados não lineares (`ST`, `RedBlackBST`, `Graph`) e arquitetura orientada a objetos.
 
@@ -9,11 +9,11 @@ Projeto académico para a gestão de dados académicos e navegação indoor em J
 
 | Package                                  | Conteúdo                                                                 |
 |------------------------------------------|--------------------------------------------------------------------------|
-| `edu.ufp.inf.lp2.project.model`          | Entidades principais do domínio (alunos, professores, cursos, etc.)     |
-| `edu.ufp.inf.lp2.project.manager`        | Gestores com estruturas de dados (`ST`, `RedBlackBST`)                  |
-| `edu.ufp.inf.lp2.project.io`             | Leitura e escrita de dados em ficheiros `.txt`                          |
-| `edu.ufp.inf.lp2.project.test`           | Testes `static` organizados por requisito e milestone                   |
-| `edu.ufp.inf.lp2.project.app`            | Classe principal `MainApp` (a criar)                                    |
+| `edu.ufp.inf.lp2.project.model`          | Entidades principais do domínio (alunos, professores, cursos, etc.)      |
+| `edu.ufp.inf.lp2.project.manager`        | Gestores com estruturas de dados (`ST`, `RedBlackBST`)                   |
+| `edu.ufp.inf.lp2.project.io`             | Leitura e escrita de dados em ficheiros `.txt`                           |
+| `edu.ufp.inf.lp2.project.test`           | Testes `static` organizados por requisito e milestone                    |
+| `edu.ufp.inf.lp2.project.app`            | Classe principal `MainApp` (a criar)                                     |
 
 ---
 
@@ -90,21 +90,21 @@ Projeto académico para a gestão de dados académicos e navegação indoor em J
 
 - `TimeSlot.overlapsWith()` permite verificar sobreposição
 - `InscricaoManager.conflitoHorario(...)` é usado para validar horários:
-    - Antes de inscrever aluno em UC
-    - Antes de associar professor a UC
+  - Antes de inscrever aluno em UC
+  - Antes de associar professor a UC
 
 ---
 
 ## 📂 Leitura e Escrita de Ficheiros `.txt`
 
-| Ficheiro       | Descrição                        |
-|----------------|----------------------------------|
-| `alunos.txt`   | ID, nome e UCs inscritas         |
-| `professores.txt` | ID e nome dos professores     |
-| `ucs.txt`      | Código, nome, curso, horários, professores |
-| `salas.txt`    | Código, piso, capacidade, tomadas |
-| `cursos.txt`   | Cursos com UCs associadas        |
-| `turmas.txt`   | Listagem de turmas e inscrições  |
+| Ficheiro           | Descrição                        |
+|--------------------|----------------------------------|
+| `alunos.txt`       | ID, nome e UCs inscritas         |
+| `professores.txt`  | ID e nome dos professores        |
+| `ucs.txt`          | Código, nome, curso, horários, professores |
+| `salas.txt`        | Código, piso, capacidade, tomadas|
+| `cursos.txt`       | Cursos com UCs associadas        |
+| `turmas.txt`       | Listagem de turmas e inscrições  |
 
 ---
 
@@ -137,10 +137,10 @@ Cada turma representa uma instância de uma UC com:
 Gere as turmas com:
 - `ST<String, List<ClassGroup>>` (agrupadas por UC)
 - Permite:
-    - Criar turmas
-    - Verificar vagas
-    - Adicionar alunos
-    - Listar com nome do professor (acesso a `ProfessorManager`)
+  - Criar turmas
+  - Verificar vagas
+  - Adicionar alunos
+  - Listar com nome do professor (acesso a `ProfessorManager`)
 
 ---
 
@@ -152,7 +152,7 @@ LP2;P1001;30;2022001,2022002
 
 ---
 
-## 📋 Funcionalidades atuais no menu:
+## 📋 Funcionalidades atuais no menu
 
 ### Menu Estudante:
 - Listar estudantes
@@ -201,3 +201,26 @@ LP2;P1001;30;2022001,2022002
 │   └── app/
 └── test/java/edu/ufp/inf/lp2/project/test/
 ```
+
+---
+
+## 👨‍💻 Como testar
+
+- As funções de teste encontram-se em `R2.java`, `R3.java`, `R4.java`, `R10.java` (`edu.ufp.inf.lp2.project.test`)
+- Basta correr os métodos `static` ou as `main()` para cada requisito
+- Os dados de exemplo podem ser encontrados na pasta `/DB`
+
+---
+
+## 📚 Documentação
+
+- Todo o código contém documentação `Javadoc` (em progresso)
+- O diagrama de classes UML está disponível no repositório
+
+---
+
+## 🚀 Observações finais
+
+Projeto em constante desenvolvimento para a unidade curricular de LP2/AED2 — Universidade Fernando Pessoa, 2024/25.
+
+---

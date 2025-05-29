@@ -78,10 +78,10 @@ public class TestesMilestone2 {
 
     public static void testarRequisitoR10_guardarProfessores() {
         List<Professor> professores = new ArrayList<>();
-        professores.add(new Professor("P1001", "João Viana"));
-        professores.add(new Professor("P1002", "Rui Silva Moreira"));
-        professores.add(new Professor("P1003", "José Torres"));
-        professores.add(new Professor("P1004", "Célio Carvalho"));
+        professores.add(new Professor("P1", "João Viana"));
+        professores.add(new Professor("P2", "Rui Silva Moreira"));
+        professores.add(new Professor("P3", "José Torres"));
+        professores.add(new Professor("P4", "Célio Carvalho"));
 
         FileUtils.saveProfessorsToFile("professores.txt", professores);
     }
@@ -263,7 +263,7 @@ public class TestesMilestone2 {
         sm.addSubject(lp2);
 
         // Criar turma de LP2
-        ClassGroup turma = new ClassGroup("LP2", "P1001", 30);
+        ClassGroup turma = new ClassGroup("LP2", "P1", 30);
         turma.addStudent("2022001");
         turma.addStudent("2022002");
 
@@ -271,7 +271,7 @@ public class TestesMilestone2 {
         classGroupManager.addClassGroup(turma);
 
         // Criar outra turma da mesma UC
-        ClassGroup turma2 = new ClassGroup("LP2", "P1002", 30);
+        ClassGroup turma2 = new ClassGroup("LP2", "P2", 30);
         turma2.addStudent("2022003");
         classGroupManager.addClassGroup(turma2);
 

@@ -4,16 +4,17 @@ import edu.ufp.inf.lp2.project.model.*;
 import java.util.List;
 import java.util.ArrayList;
 
-
-
 /**
- * Gere a lógica de inscrição de estudantes em Unidades Curriculares (Subjects).
+ * Classe responsável pela gestão de inscrições de alunos e associações de professores a UCs.
  */
 public class InscricaoManager {
 
-
     /**
-     * Verifica se há sobreposição entre dois conjuntos de horários.
+     * Verifica se há conflito de horários entre os horários existentes e os novos.
+     *
+     * @param existentes Lista de horários já atribuídos
+     * @param novos      Lista de novos horários a verificar
+     * @return true se houver conflito, false caso contrário
      */
     public static boolean conflitoHorario(List<TimeSlot> existentes, List<TimeSlot> novos) {
         for (TimeSlot novo : novos) {
@@ -70,6 +71,14 @@ public class InscricaoManager {
         System.out.println("Aluno '" + aluno.getName() + "' inscrito na UC '" + subject.getName() + "'.");
     }
 
+    /**
+     * Associa um professor a uma UC, verificando conflitos de horário.
+     *
+     * @param professorId ID do professor
+     * @param subjectCode Código da UC
+     * @param pm          ProfessorManager
+     * @param sm          SubjectManager
+     */
     public static void associarProfessorAUc(String professorId, String subjectCode, ProfessorManager pm, SubjectManager sm) {
         Professor prof = pm.getProfessor(professorId);
         Subject uc = sm.getSubject(subjectCode);

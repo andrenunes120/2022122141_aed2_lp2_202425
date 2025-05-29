@@ -1,4 +1,3 @@
-P1001;João Viana
-P1002;Rui Silva Moreira
-P1003;José Torres
-P1004;Célio Carvalho
+P1;João Viana
+P2;Rui Moreira
+P3;Célio Carvalho

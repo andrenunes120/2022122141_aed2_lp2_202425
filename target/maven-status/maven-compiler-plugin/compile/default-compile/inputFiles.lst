@@ -9,8 +9,10 @@
 /Users/andrenunes120/Desktop/Projetos/2022122141_aed2_lp2_202425/src/main/java/edu/ufp/inf/lp2/project/manager/InscricaoManager.java
 /Users/andrenunes120/Desktop/Projetos/2022122141_aed2_lp2_202425/src/main/java/edu/ufp/inf/lp2/project/manager/RoomManager.java
 /Users/andrenunes120/Desktop/Projetos/2022122141_aed2_lp2_202425/src/main/java/edu/ufp/inf/lp2/project/manager/CourseManager.java
+/Users/andrenunes120/Desktop/Projetos/2022122141_aed2_lp2_202425/src/main/java/edu/ufp/inf/lp2/project/manager/ClassGroupManager.java
 /Users/andrenunes120/Desktop/Projetos/2022122141_aed2_lp2_202425/src/main/java/edu/ufp/inf/lp2/project/manager/StudentManager.java
 /Users/andrenunes120/Desktop/Projetos/2022122141_aed2_lp2_202425/src/main/java/edu/ufp/inf/lp2/project/manager/SubjectManager.java
+/Users/andrenunes120/Desktop/Projetos/2022122141_aed2_lp2_202425/src/main/java/edu/ufp/inf/lp2/project/model/ClassGroup.java
 /Users/andrenunes120/Desktop/Projetos/2022122141_aed2_lp2_202425/src/main/java/edu/ufp/inf/lp2/project/io/FileUtils.java
 /Users/andrenunes120/Desktop/Projetos/2022122141_aed2_lp2_202425/src/main/java/edu/ufp/inf/lp2/project/model/Subject.java
 /Users/andrenunes120/Desktop/Projetos/2022122141_aed2_lp2_202425/src/main/java/edu/ufp/inf/lp2/project/model/Course.java

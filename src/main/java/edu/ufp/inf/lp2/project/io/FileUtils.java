@@ -10,10 +10,18 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 /**
- * Utilitários para guardar e carregar dados de ficheiros .txt.
+ * Classe utilitária com métodos estáticos para guardar e carregar entidades do projeto
+ * (alunos, professores, UCs, cursos, salas, turmas) em ficheiros `.txt`.
  */
 public class FileUtils {
 
+    /**
+     * Guarda alunos num ficheiro `.txt`.
+     * Formato: ID;Nome;UC1,UC2,...
+     *
+     * @param filename nome do ficheiro
+     * @param students lista de estudantes
+     */
     public static void saveStudentsToFile(String filename, Iterable<Student> students) {
         Path path = Paths.get("DB", filename);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
@@ -28,6 +36,12 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Carrega alunos de um ficheiro `.txt`.
+     *
+     * @param filename nome do ficheiro
+     * @return lista de estudantes carregados
+     */
     public static List<Student> loadStudentsFromFile(String filename) {
         List<Student> students = new ArrayList<>();
         Path path = Paths.get("DB", filename);
@@ -55,6 +69,13 @@ public class FileUtils {
         return students;
     }
 
+    /**
+     * Guarda UCs num ficheiro `.txt`, com horários e professores.
+     * Formato: Código;Nome;Curso;Prof1,Prof2,...;DIA,HH:mm,HH:mm|...
+     *
+     * @param filename nome do ficheiro
+     * @param subjects lista de UCs
+     */
     public static void saveSubjectsToFile(String filename, Iterable<Subject> subjects) {
         Path path = Paths.get("DB", filename);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
@@ -78,56 +99,69 @@ public class FileUtils {
         }
     }
 
-
+    /**
+     * Carrega UCs de um ficheiro `.txt`, incluindo horários e professores.
+     *
+     * @param filename nome do ficheiro
+     * @return lista de UCs
+     */
     public static List<Subject> loadSubjectsFromFile(String filename) {
         List<Subject> subjects = new ArrayList<>();
         Path path = Paths.get("DB", filename);
+
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] partes = line.split(";", 5);  // 5 partes: code, name, courseCode, horarios, profs
-
+                String[] partes = line.split(";", 5);
                 if (partes.length >= 3) {
                     String code = partes[0];
                     String name = partes[1];
-                    String courseCode = partes[2];
+                    String course = partes[2];
 
-                    Subject subject = new Subject(code, name, courseCode);
+                    Subject subject = new Subject(code, name, course);
 
-                    // Ler horários
+                    // Carregar professores (partes[3])
                     if (partes.length >= 4 && !partes[3].isEmpty()) {
-                        String[] horarios = partes[3].split("\\|");
-                        for (String h : horarios) {
-                            String[] dados = h.split(",");
-                            if (dados.length == 3) {
-                                DayOfWeek dia = DayOfWeek.valueOf(dados[0]);
-                                LocalTime inicio = LocalTime.parse(dados[1]);
-                                LocalTime fim = LocalTime.parse(dados[2]);
-                                subject.addTimeSlot(new TimeSlot(dia, inicio, fim));
+                        for (String pid : partes[3].split(",")) {
+                            if (!pid.isBlank()) {
+                                subject.addProfessor(pid.trim());
                             }
                         }
                     }
 
-                    // Ler professores
+                    // Carregar horários (partes[4])
                     if (partes.length == 5 && !partes[4].isEmpty()) {
-                        String[] profIds = partes[4].split(",");
-                        for (String pid : profIds) {
-                            subject.addProfessor(pid);
+                        for (String slotStr : partes[4].split("\\|")) {
+                            String[] dados = slotStr.split(",");
+                            if (dados.length == 3) {
+                                DayOfWeek dia = DayOfWeek.valueOf(dados[0].trim());
+                                LocalTime inicio = LocalTime.parse(dados[1].trim());
+                                LocalTime fim = LocalTime.parse(dados[2].trim());
+                                subject.addTimeSlot(new TimeSlot(dia, inicio, fim));
+                            }
                         }
                     }
 
                     subjects.add(subject);
                 }
             }
-            System.out.println(subjects.size() + " UCs carregadas de '" + path + "'.");
+
+            System.out.println(subjects.size() + " UCs carregadas de 'DB/" + filename + "'.");
+
         } catch (IOException e) {
-            System.err.println("Erro ao ler o ficheiro: " + e.getMessage());
+            System.err.println("Erro ao carregar UCs: " + e.getMessage());
         }
+
         return subjects;
     }
 
-
-
+    /**
+     * Guarda salas num ficheiro `.txt`.
+     * Formato: Código;Piso;Capacidade;Número de tomadas
+     *
+     * @param filename nome do ficheiro
+     * @param rooms lista de salas
+     */
     public static void saveRoomsToFile(String filename, Iterable<Room> rooms) {
         Path path = Paths.get("DB", filename);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
@@ -141,6 +175,12 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Carrega salas de um ficheiro `.txt`.
+     *
+     * @param filename nome do ficheiro
+     * @return lista de salas carregadas
+     */
     public static List<Room> loadRoomsFromFile(String filename) {
         List<Room> rooms = new ArrayList<>();
         Path path = Paths.get("DB", filename);
@@ -163,6 +203,13 @@ public class FileUtils {
         return rooms;
     }
 
+    /**
+     * Guarda professores num ficheiro `.txt`.
+     * Formato: ID;Nome
+     *
+     * @param filename nome do ficheiro
+     * @param professors lista de professores
+     */
     public static void saveProfessorsToFile(String filename, Iterable<Professor> professors) {
         Path path = Paths.get("DB", filename);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
@@ -194,7 +241,12 @@ public class FileUtils {
         return professors;
     }
 
-
+    /**
+     * Carrega professores de um ficheiro `.txt`.
+     *
+     * @param filename nome do ficheiro
+     * @return lista de professores
+     */
     public static void saveCoursesToFile(String filename, Iterable<Course> courses) {
         Path path = Paths.get("DB", filename);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
@@ -209,6 +261,13 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Carrega cursos de um ficheiro `.txt`.
+     * Formato: Código;Nome;UC1,UC2,...
+     *
+     * @param filename nome do ficheiro
+     * @return lista de cursos carregados
+     */
     public static List<Course> loadCoursesFromFile(String filename) {
         List<Course> cursos = new ArrayList<>();
         Path path = Paths.get("DB", filename);
@@ -237,6 +296,13 @@ public class FileUtils {
     }
 
 
+    /**
+     * Guarda turmas (ClassGroups) num ficheiro `.txt`.
+     * Formato: Código da UC;ID do professor;Capacidade;Código da sala;ID1,ID2,...
+     *
+     * @param filename nome do ficheiro
+     * @param turmas lista de turmas
+     */
     public static void saveClassGroupsToFile(String filename, Iterable<ClassGroup> turmas) {
         Path path = Paths.get("DB", filename);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
@@ -245,6 +311,7 @@ public class FileUtils {
                 writer.write(turma.getSubjectCode() + ";" +
                         turma.getProfessorId() + ";" +
                         turma.getCapacity() + ";" +
+                        turma.getRoomCode() + ";" +
                         alunos);
                 writer.newLine();
             }
@@ -254,23 +321,32 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Carrega turmas (ClassGroups) de um ficheiro `.txt`.
+     * Formato: Código da UC;ID do professor;Capacidade;Código da sala;ID1,ID2,...
+     *
+     * @param filename nome do ficheiro
+     * @return lista de turmas carregadas
+     */
     public static List<ClassGroup> loadClassGroupsFromFile(String filename) {
         List<ClassGroup> turmas = new ArrayList<>();
         Path path = Paths.get("DB", filename);
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] partes = line.split(";", 4);
-                if (partes.length >= 3) {
+                String[] partes = line.split(";", 5);  // ← agora lês 5 campos
+
+                if (partes.length >= 4) {
                     String subjectCode = partes[0];
                     String professorId = partes[1];
                     int capacity = Integer.parseInt(partes[2]);
+                    String roomCode = partes[3];
 
                     ClassGroup turma = new ClassGroup(subjectCode, professorId, capacity);
+                    turma.setRoomCode(roomCode);
 
-                    // Adicionar alunos, se existirem
-                    if (partes.length == 4 && !partes[3].isEmpty()) {
-                        String[] alunos = partes[3].split(",");
+                    if (partes.length == 5 && !partes[4].isEmpty()) {
+                        String[] alunos = partes[4].split(",");
                         for (String a : alunos) {
                             turma.addStudent(a);
                         }
@@ -285,8 +361,5 @@ public class FileUtils {
         }
         return turmas;
     }
-
-
-
 
 }

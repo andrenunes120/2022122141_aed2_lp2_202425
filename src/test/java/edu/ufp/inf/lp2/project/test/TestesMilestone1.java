@@ -102,7 +102,7 @@ public class TestesMilestone1 {
     public static void main(String[] args) {
         //testarRequisitoR2();
         //testarRequisitoR2_Subjects();
-        //testarRequisitoR4a();
-        testarInscricaoAlunoComHorario();
+        testarRequisitoR4a();
+        //testarInscricaoAlunoComHorario();
     }
 }
