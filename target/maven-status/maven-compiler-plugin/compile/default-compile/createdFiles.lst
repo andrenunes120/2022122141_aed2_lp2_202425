@@ -1,2 +1,16 @@
+edu/ufp/inf/lp2/project/io/FileUtils.class
+edu/ufp/inf/lp2/project/model/SubjectSlot.class
+edu/ufp/inf/lp2/project/model/Student.class
+edu/ufp/inf/lp2/project/app/MainApp.class
+edu/ufp/inf/lp2/project/manager/ProfessorManager.class
+edu/ufp/inf/lp2/project/model/Course.class
+edu/ufp/inf/lp2/project/manager/RoomManager.class
+edu/ufp/inf/lp2/project/manager/StudentManager.class
+edu/ufp/inf/lp2/project/model/Subject.class
+edu/ufp/inf/lp2/project/manager/SubjectManager.class
 edu/ufp/inf/lp2/project/model/Person.class
+edu/ufp/inf/lp2/project/model/Room.class
+edu/ufp/inf/lp2/project/manager/CourseManager.class
+edu/ufp/inf/lp2/project/model/TimeSlot.class
+edu/ufp/inf/lp2/project/manager/InscricaoManager.class
 edu/ufp/inf/lp2/project/model/Professor.class
