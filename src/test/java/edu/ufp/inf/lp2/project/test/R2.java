@@ -22,7 +22,7 @@ public class R2 {
         System.out.println("Remover estudante 2022001...");
         sm.removeStudent("2022001");
 
-        System.out.println("Lista após remoção:\n");
+        System.out.println("Lista após remoção:");
         sm.listStudents();
     }
 
@@ -53,7 +53,7 @@ public class R2 {
         System.out.println("Antes da edição: " + sm.getStudent("2022001"));
 
         s.setName("Joana Ribeiro");
-        System.out.println("Depois da edição: " + sm.getStudent("2022001")+ "\n");
+        System.out.println("Depois da edição: " + sm.getStudent("2022001"));
     }
 
     public static void testarEditarUC() {
@@ -64,7 +64,7 @@ public class R2 {
         System.out.println("Antes da edição: " + sm.getSubject("LP2"));
 
         uc.setName("Linguagens de Programação II");
-        System.out.println("Depois da edição: " + sm.getSubject("LP2")+ "\n");
+        System.out.println("Depois da edição: " + sm.getSubject("LP2"));
     }
 
     public static void testarValidacaoIntegridadeProfessorUC() {
@@ -81,9 +81,9 @@ public class R2 {
         System.out.println("Validação de integridade:");
         for (String profId : s.getProfessors()) {
             if (pm.getProfessor(profId) != null) {
-                System.out.println("  Professor " + profId + " encontrado: OK" + "\n");
+                System.out.println("  Professor " + profId + " encontrado: OK");
             } else {
-                System.out.println("  Professor " + profId + " inexistente: ERRO" + "\n");
+                System.out.println("  Professor " + profId + " inexistente: ERRO");
             }
         }
     }
@@ -103,16 +103,21 @@ public class R2 {
 
         System.out.println("Alunos arquivados:");
         for (Student a : arquivo) {
-            System.out.println(a + "\n");
+            System.out.println(a);
         }
     }
 
     public static void main(String[] args) {
         testarRequisitoR2();
+        System.out.println();
         testarRequisitoR2_Subjects();
+        System.out.println();
         testarEditarAluno();
+        System.out.println();
         testarEditarUC();
+        System.out.println();
         testarValidacaoIntegridadeProfessorUC();
+        System.out.println();
         testarArquivoAlunoRemovido();
     }
 }
