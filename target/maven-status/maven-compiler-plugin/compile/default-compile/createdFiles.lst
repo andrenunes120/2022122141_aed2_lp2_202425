@@ -3,6 +3,7 @@ edu/ufp/inf/lp2/project/model/SubjectSlot.class
 edu/ufp/inf/lp2/project/model/Student.class
 edu/ufp/inf/lp2/project/app/MainApp.class
 edu/ufp/inf/lp2/project/manager/ProfessorManager.class
+edu/ufp/inf/lp2/project/manager/BuildingGraphManager.class
 edu/ufp/inf/lp2/project/model/ClassGroup.class
 edu/ufp/inf/lp2/project/manager/ClassGroupManager.class
 edu/ufp/inf/lp2/project/model/Course.class
@@ -11,6 +12,7 @@ edu/ufp/inf/lp2/project/manager/StudentManager.class
 edu/ufp/inf/lp2/project/model/Subject.class
 edu/ufp/inf/lp2/project/manager/SubjectManager.class
 edu/ufp/inf/lp2/project/model/Person.class
+edu/ufp/inf/lp2/project/model/MapVertex.class
 edu/ufp/inf/lp2/project/model/Room.class
 edu/ufp/inf/lp2/project/manager/CourseManager.class
 edu/ufp/inf/lp2/project/model/TimeSlot.class
