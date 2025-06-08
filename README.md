@@ -1,226 +1,96 @@
+# Projeto SchoolAir — LP2/AED2
 
-# 📚 Gestão Académica & Navegação Indoor — LP2/AED2 UFP 2024/25
+Trabalho realizado no âmbito das unidades curriculares de LP2/AED2 — Navegação Indoor e Gestão de Informação Escolar (2024/2025).
 
-Projeto académico para a gestão de dados académicos e navegação indoor em Java, recorrendo a estruturas de dados não lineares (`ST`, `RedBlackBST`, `Graph`) e arquitetura orientada a objetos.
+## 🗂️ Estrutura do Projeto
 
----
+- `src/main/java/edu/ufp/inf/lp2/project/`
+  - `model/` — Modelos de domínio (Aluno, Professor, Sala, UC, Horário, Grafo)
+  - `manager/` — Gestores de dados e lógica (StudentManager, ProfessorManager, RoomManager, etc.)
+  - `app/` — Aplicação principal (MainApp)
+  - `io/` — Funções de leitura e escrita de ficheiros (FileUtils)
+- `src/test/java/edu/ufp/inf/lp2/project/test/`
+  - Testes automáticos por requisito (`R2.java`, `R3.java`, `R4.java`, `R7.java`, `R8.java`, `R10.java`)
+- `DB/` — Ficheiros de dados de exemplo (.txt)
+- `uml/` — Diagramas UML do projeto (`project.drawio`, `project.png`)
+- `src/docs/` — Documentação Javadoc gerada
+- `lib/` — Bibliotecas externas (algs4.jar)
 
-## 📦 Estrutura de Packages
+## 📦 Tecnologias e Estruturas Usadas
 
-| Package                                  | Conteúdo                                                                 |
-|------------------------------------------|--------------------------------------------------------------------------|
-| `edu.ufp.inf.lp2.project.model`          | Entidades principais do domínio (alunos, professores, cursos, etc.)      |
-| `edu.ufp.inf.lp2.project.manager`        | Gestores com estruturas de dados (`ST`, `RedBlackBST`)                   |
-| `edu.ufp.inf.lp2.project.io`             | Leitura e escrita de dados em ficheiros `.txt`                           |
-| `edu.ufp.inf.lp2.project.test`           | Testes `static` organizados por requisito e milestone                    |
-| `edu.ufp.inf.lp2.project.app`            | Classe principal `MainApp` (a criar)                                     |
+- **Java 17+**
+- **Estruturas de Dados:** HashMap, Red-Black BST (algs4), grafos orientados e ponderados
+- **Leitura/escrita de ficheiros:** texto (.txt)
+- **Javadoc** para documentação
+- **Testes automáticos** em Java
 
----
+## 📋 Implementação dos Requisitos
 
-## ✅ Classes e Design
+### **Milestone 1**
 
-### `TimeSlot` (`model`)
-> Representa um horário (dia da semana + hora de início/fim).  
-**Usado por**: `Student`, `Professor`, `Room`.
+- **R1. Modelação de entidades:**  
+  Todas as entidades escolares estão modeladas em Java e presentes no diagrama UML (`uml/project.png`).  
+  Classes: `Student`, `Professor`, `Course`, `Subject`, `ClassGroup`, `Room`, `TimeSlot`, `SubjectSlot`, `MapVertex`, `Person`.
 
-- Usa `DayOfWeek` e `LocalTime` da API Java.
-- Método `overlapsWith()` para verificar conflitos — essencial para R4.a/d.
+- **R2. Symbol Table (dados não ordenáveis):**  
+  Utilização de `HashMap` para gerir alunos, professores, turmas, UCs, etc.  
+  Gestores: `StudentManager`, `ProfessorManager`, ...  
+  Testes em: `R2.java`
 
----
+- **R3. BST balanceada (dados ordenáveis):**  
+  Uso de árvores Red-Black para dados ordenáveis (ex: horários, slots de disciplinas).  
+  Testes em: `R3.java`
 
-### `Person` (`model`)
-> Classe abstrata base para `Student` e `Professor`.
+- **R4. Pesquisas sobre a informação:**  
+  Funções para listar salas livres, professores de UC, horários de atendimento, etc.  
+  Testes em: `R4.java`
 
-- Contém `id` e `name`.
-- Evita duplicação de código nas subclasses.
+- **R5. Funções de teste:**  
+  Cada requisito tem funções de teste dedicadas em ficheiros separados.
 
----
+- **R6. Comentários/Javadoc:**  
+  Todas as classes/métodos documentados; documentação gerada em `src/docs`.
 
-### `Student` (`model`)
-> Representa um estudante da instituição.
+### **Milestone 2**
 
-- Herda de `Person`.
-- `List<String> enrolledSubjects` (códigos de UC).
-- `List<SubjectSlot>` para o horário.
+- **R7. Grafo do edifício:**  
+  Implementação do grafo indoor do edifício com vértices e arestas ponderadas (distância/tempo).  
+  Classes: `MapVertex`, `BuildingGraphManager`  
+  Testes em: `R7.java`
 
----
+- **R8. Funcionalidades do grafo:**  
+  Caminho mais curto, operações sobre subgrafos e conectividade.  
+  Testes em: `R8.java`
 
-### `Professor` (`model`)
-> Representa um professor.
+- **R10. IO em ficheiros texto:**  
+  Carregamento e gravação de entidades/mapa para ficheiros `.txt`.  
+  Funções em: `FileUtils.java`  
+  Testes em: `R10.java`
 
-- Herda de `Person`.
-- Lista de UCs onde leciona.
-- Horários de atendimento e associação a `Subject`.
+### **Funcionalidades em falta/parciais**
+- **R9 (GUI):** Ainda não implementada.
+- **R11 (ficheiros binários):** Não está implementado (apenas IO em texto).
 
----
+## 🧪 Testes realizados
 
-### `Subject` (`model`)
-> Representa uma Unidade Curricular.
+- Cada requisito tem ficheiro de teste próprio em `src/test/java/edu/ufp/inf/lp2/project/test/`.
+- Os testes inserem, removem, editam e listam entidades e validações específicas (por ex: procura de salas livres, caminhos no grafo, etc).
+- Para correr os testes, compilar o projeto e executar os ficheiros de teste individualmente (ou integrar num runner JUnit, se necessário).
 
-- Código, nome, curso a que pertence
-- Lista de `TimeSlot` para o horário
-- Lista de `professorIds` e `studentIds` associados
+## 📝 Documentação
 
----
+- Diagrama UML disponível em `uml/project.png` e editável em `uml/project.drawio`.
+- Documentação Javadoc gerada em `src/docs`.
 
-### `Course` (`model`)
-> Representa um curso superior (ex: LEI, MEI).
+## 🚩 Pontos de melhoria / próximos passos
 
-- Código e nome do curso
-- Lista de códigos de `Subject` associadas
-
----
-
-### `Room` (`model`)
-> Representa uma sala com atributos físicos e horários ocupados.
-
-- Código (único), piso, capacidade, número de tomadas
-- Lista de `TimeSlot` com ocupações
-- `isFreeAt()` verifica se está livre
-
----
-
-### `SubjectSlot` (`model`)
-- Combinação de `TimeSlot` + `subjectCode`
-- Utilizado em `Student.getSchedule()` para listar horários com contexto
-
----
-
-## 🧠 Lógica de Verificação de Conflitos
-
-- `TimeSlot.overlapsWith()` permite verificar sobreposição
-- `InscricaoManager.conflitoHorario(...)` é usado para validar horários:
-  - Antes de inscrever aluno em UC
-  - Antes de associar professor a UC
+- Implementar interface gráfica (GUI) para edição e visualização dos dados.
+- Adicionar suporte para ficheiros binários (R11).
+- Reforçar testes automáticos (ex: testes para exceções, casos-limite).
+- Garantir Javadoc em todos os métodos públicos (revisão final).
 
 ---
 
-## 📂 Leitura e Escrita de Ficheiros `.txt`
+**Projeto realizado por:**  
+*André Nunes, nº 2022122141 — Universidade Fernando Pessoa*
 
-| Ficheiro           | Descrição                        |
-|--------------------|----------------------------------|
-| `alunos.txt`       | ID, nome e UCs inscritas         |
-| `professores.txt`  | ID e nome dos professores        |
-| `ucs.txt`          | Código, nome, curso, horários, professores |
-| `salas.txt`        | Código, piso, capacidade, tomadas|
-| `cursos.txt`       | Cursos com UCs associadas        |
-| `turmas.txt`       | Listagem de turmas e inscrições  |
-
----
-
-## 💾 Exemplo de `ucs.txt`
-
-```
-LP2;Linguagens de Programação II;LEI;MONDAY,09:00,11:00|WEDNESDAY,14:00,16:00;P1001
-```
-
----
-
-## 🧱 `FileUtils` (`io`)
-- Métodos estáticos para guardar/carregar todas as entidades em `.txt`
-- Usa `Paths.get("DB", filename)` para estruturar os dados
-
----
-
-## 📘 TURMAS (`ClassGroup`)
-
-### `ClassGroup`
-Cada turma representa uma instância de uma UC com:
-- Código da UC
-- Professor responsável
-- Capacidade
-- Lista de alunos inscritos
-
----
-
-### `ClassGroupManager`
-Gere as turmas com:
-- `ST<String, List<ClassGroup>>` (agrupadas por UC)
-- Permite:
-  - Criar turmas
-  - Verificar vagas
-  - Adicionar alunos
-  - Listar com nome do professor (acesso a `ProfessorManager`)
-
----
-
-### Exemplo de linha em `turmas.txt`:
-
-```
-LP2;P1001;30;2022001,2022002
-```
-
----
-
-## 📋 Funcionalidades atuais no menu
-
-### Menu Estudante:
-- Listar estudantes
-- Adicionar/remover
-- Ver horário (com reconstrução via UCs)
-- Inscrever em UC com verificação de conflitos
-
-### Menu Professor:
-- Listar/adicionar/remover
-- Criar turma com UC, professor e capacidade
-- Listar turmas (com nome do professor)
-- Persistência em `turmas.txt`
-
----
-
-## 📝 Requisitos Cumpridos
-
-| Requisito | Estado | Implementado em                        |
-|-----------|--------|----------------------------------------|
-| R1        | ✅     | Estrutura OO (`model`)                 |
-| R2        | ✅     | `StudentManager`, `SubjectManager`     |
-| R3        | ✅     | `RoomManager` com `RedBlackBST`        |
-| R4        | ✅     | Conflitos, horários, associações       |
-| R5        | ✅     | Testes `static`                        |
-| R10       | ✅     | `FileUtils` e dados persistentes       |
-| R6        | 🟡     | Javadoc em progresso                   |
-
----
-
-## 📁 Estrutura de Diretórios
-
-```
-/DB
-  alunos.txt
-  professores.txt
-  ucs.txt
-  salas.txt
-  cursos.txt
-  turmas.txt
-
-/src
-├── main/java/edu/ufp/inf/lp2/project/
-│   ├── model/
-│   ├── manager/
-│   ├── io/
-│   └── app/
-└── test/java/edu/ufp/inf/lp2/project/test/
-```
-
----
-
-## 👨‍💻 Como testar
-
-- As funções de teste encontram-se em `R2.java`, `R3.java`, `R4.java`, `R10.java` (`edu.ufp.inf.lp2.project.test`)
-- Basta correr os métodos `static` ou as `main()` para cada requisito
-- Os dados de exemplo podem ser encontrados na pasta `/DB`
-
----
-
-## 📚 Documentação
-
-- Todo o código contém documentação `Javadoc` (em progresso)
-- O diagrama de classes UML está disponível no repositório
-
----
-
-## 🚀 Observações finais
-
-Projeto em constante desenvolvimento para a unidade curricular de LP2/AED2 — Universidade Fernando Pessoa, 2024/25.
-
----

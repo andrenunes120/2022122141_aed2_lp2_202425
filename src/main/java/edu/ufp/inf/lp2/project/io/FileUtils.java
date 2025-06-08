@@ -334,7 +334,7 @@ public class FileUtils {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] partes = line.split(";", 5);  // ← agora lês 5 campos
+                String[] partes = line.split(";", 5);  //  agora le 5 campos
 
                 if (partes.length >= 4) {
                     String subjectCode = partes[0];
